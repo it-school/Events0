@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Events0
 {
     delegate void UI();
 
-    class MyEvent
+    class UserEventClass
     {
         // Объявляем событие
         public event UI UserEvent;
@@ -39,8 +35,7 @@ namespace Events0
         // Обработчик события
         public void UserInfoHandler()
         {
-            Console.WriteLine("Событие вызвано!\n");
-            Console.WriteLine("Имя: {0}\nФамилия: {1}\nВозраст: {2}", Name, Family, Age);
+            Console.WriteLine($"Событие вызвано для объекта\nИмя: {Name}\nФамилия: {Family}\nВозраст: {Age}");
         }
     }
 
@@ -48,12 +43,12 @@ namespace Events0
     {
         static void Main()
         {
-            MyEvent evt = new MyEvent();
-            UserInfo user1 = new UserInfo(Name: "IT-school", Family: "Odessa", Age: 10);
+            UserEventClass @event = new UserEventClass();
+            UserInfo user = new UserInfo(Name: "IT-school", Family: "Odessa", Age: 10);
 
-            evt.UserEvent += user1.UserInfoHandler; // Добавляем обработчик события
+            @event.UserEvent += user.UserInfoHandler; // Добавляем обработчик события
 
-            evt.OnUserEvent(); // Запустим событие
+            @event.OnUserEvent(); // Запустим событие
 
             Console.ReadLine();
         }
